@@ -1,3 +1,4 @@
+import uuid
 from fastapi import APIRouter
 from app.db import conn, cursor
 from datetime import datetime
@@ -7,7 +8,7 @@ router = APIRouter()
 
 @router.post("/api/register")
 async def register_agent(payload: dict):
-    agent_id = payload.get("agent_id")
+    agent_id = payload.get("agent_id") or f"agent-{uuid.uuid4().hex[:8]}"
 
     # create API key
     api_key = generate_api_key(agent_id)
