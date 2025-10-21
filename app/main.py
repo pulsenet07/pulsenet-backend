@@ -20,4 +20,4 @@ app.include_router(register.router)
 # ✅ Run the integrity check only once when app starts
 @app.on_event("startup")
 async def startup_event():
-    await ensure_database_integrity()
+    ensure_database_integrity()
