@@ -5,7 +5,7 @@ from app.routes import heartbeat, register
 
 app = FastAPI(title="PulseNet Backend")
 
-ensure_database_integrity()
+# ensure_database_integrity()
 
 # CORS for frontend
 app.add_middleware(
