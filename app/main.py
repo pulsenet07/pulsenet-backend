@@ -5,8 +5,6 @@ from app.routes import heartbeat, register
 
 app = FastAPI(title="PulseNet Backend")
 
-# ensure_database_integrity()
-
 # CORS for frontend
 app.add_middleware(
     CORSMiddleware,
@@ -18,3 +16,8 @@ app.add_middleware(
 
 app.include_router(heartbeat.router)
 app.include_router(register.router)
+
+# ✅ Run the integrity check only once when app starts
+@app.on_event("startup")
+async def startup_event():
+    await ensure_database_integrity()
