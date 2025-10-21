@@ -1,6 +1,9 @@
 from fastapi import FastAPI
+from app.db_check import ensure_database_integrity
 from fastapi.middleware.cors import CORSMiddleware
 from app.routes import heartbeat, register
+
+ensure_database_integrity()
 
 app = FastAPI(title="PulseNet Backend")
 
